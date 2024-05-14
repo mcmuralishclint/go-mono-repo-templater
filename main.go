@@ -119,13 +119,11 @@ func writeFile(filename, content string) error {
 
 func createGoMod(dirName string) error {
 	modName := filepath.Base(dirName)
-
 	err := os.Chdir(dirName)
 	if err != nil {
 		return err
 	}
 	defer os.Chdir("..")
-
 	err = exec.Command("go", "mod", "init", modName).Run()
 	if err != nil {
 		return err
