@@ -13,7 +13,7 @@ go-mono-repo-templater is a command-line tool written in Go that generates a mon
 To use go-mono-repo-templater, you need to have Go installed on your system. You can install it using the following command:
 
 ```bash
-go get -u github.com/mcmuralishclint/go-mono-repo-templater
+go install github.com/mcmuralishclint/go-mono-repo-templater
 ```
 
 ## Usage
