@@ -11,17 +11,11 @@ import (
 
 func main() {
 	var dirName string
-	var modPath string
 	var services string
 	flag.StringVar(&dirName, "dir", ".", "Directory name for the mono repo (default: current directory)")
-	flag.StringVar(&modPath, "mod", "", "Path to the go.mod file")
 	flag.StringVar(&services, "services", "", "Comma-separated names of services")
 	flag.Parse()
 
-	if modPath == "" {
-		fmt.Println("Error: go.mod file path is required")
-		os.Exit(1)
-	}
 	if services == "" {
 		fmt.Println("Error: At least one service name is required")
 		os.Exit(1)
@@ -49,10 +43,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, modFileName := filepath.Split(modPath)
-	err = exec.Command("cp", modPath, filepath.Join(dirName, modFileName)).Run()
+	err = createGoMod(dirName)
 	if err != nil {
-		fmt.Println("Error copying go.mod:", err)
+		fmt.Println("Error creating go.mod file:", err)
 		os.Exit(1)
 	}
 
@@ -121,5 +114,19 @@ func writeFile(filename, content string) error {
 		return err
 	}
 
+	return nil
+}
+
+func createGoMod(dirName string) error {
+	modName := filepath.Base(dirName)
+	// modFilePath := filepath.Join(dirName, "go.mod")
+	err := exec.Command("go", "mod", "init", modName).Run()
+	if err != nil {
+		return err
+	}
+	err = exec.Command("go", "mod", "tidy").Run()
+	if err != nil {
+		return err
+	}
 	return nil
 }
