@@ -57,6 +57,12 @@ func main() {
 		}
 	}
 
+	err = createUtils(filepath.Join(dirName, "pkg"))
+	if err != nil {
+		fmt.Println("Error creating utils.go file:", err)
+		os.Exit(1)
+	}
+
 	fmt.Println("Mono repo structure created successfully!")
 }
 
@@ -133,4 +139,9 @@ func createGoMod(dirName string) error {
 		return err
 	}
 	return nil
+}
+
+func createUtils(pkgDir string) error {
+    utilsFilePath := filepath.Join(pkgDir, "utils.go")
+    return writeFile(utilsFilePath, "")
 }
