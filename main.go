@@ -142,6 +142,6 @@ func createGoMod(dirName string) error {
 }
 
 func createUtils(pkgDir string) error {
-    utilsFilePath := filepath.Join(pkgDir, "utils.go")
-    return writeFile(utilsFilePath, "")
+	utilsFilePath := filepath.Join(pkgDir, "utils.go")
+	return writeFile(utilsFilePath, "")
 }
