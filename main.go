@@ -82,7 +82,7 @@ func createService(serviceDir string) error {
 	if err != nil {
 		return err
 	}
-	err = writeFile(filepath.Join(internalDir, filepath.Base(serviceDir)+".go"), "")
+	err = writeFile(filepath.Join(internalDir, "domain.go"), "")
 	if err != nil {
 		return err
 	}
