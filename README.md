@@ -20,10 +20,10 @@ go get -u github.com/mcmuralishclint/go-mono-repo-templater
 To generate a mono repo structure, run the following command:
 
 ```bash
-go-mono-repo-templater -mod /path/to/go.mod -services service1,service2,service3
+go-mono-repo-templater -dir /path/to/ -services service1,service2,service3
 ```
 
-Replace /path/to/go.mod with the path to your go.mod file and service1,service2,service3 with a comma-separated list of service names.
+Replace /path/to/ with the path to your repo and service1,service2,service3 with a comma-separated list of service names.
 
 ## Directory Structure
 ```bash
